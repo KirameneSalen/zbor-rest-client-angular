@@ -1,0 +1,19 @@
+<div>
+  <h2>Lista Zboruri</h2>
+  <div>
+    <label>Destinatie: <input [(ngModel)]="destinatie"></label>
+    <label>Data Plecarii: <input type="date" [(ngModel)]="dataPlecarii"></label>
+    <button (click)="loadAll()">Filter</button>
+  </div>
+  <ul>
+    <li *ngFor="let z of zboruri">
+      {{z.id}} - {{z.destinatie}} on {{z.dataPlecarii}} at {{z.oraPlecarii}}
+    </li>
+  </ul>
+
+  <h3>New Zbor Notifications</h3>
+  <ul>
+    <li *ngFor="let z of newZborNotifications">
+      New: {{z.destinatie}} on {{z.dataPlecarii}}
+    </li>
+  </ul>

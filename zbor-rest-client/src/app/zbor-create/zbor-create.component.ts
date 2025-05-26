@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ZborService } from '../zbor.service';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-zbor-create',
@@ -42,7 +41,7 @@ export class ZborCreateComponent {
       const cleanData = {
         ...this.form.value,
         destinatie: this.form.value.destinatie ?? '',
-        dataPlecarii: this.form.value.dataPlecarii ?? '',
+        dataPlecarii: new DatePipe('en-US').transform(this.form.value.dataPlecarii, 'dd/MM/yyyy') ?? '',
         oraPlecarii: this.form.value.oraPlecarii ?? '',
         aeroport: this.form.value.aeroport ?? '',
         nrLocuriDisponibile: this.form.value.nrLocuriDisponibile ?? 0

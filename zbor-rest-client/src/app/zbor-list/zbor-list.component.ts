@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { ZborService, Zbor } from '../zbor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-zbor-list',
@@ -36,7 +36,8 @@ export class ZborListComponent implements OnInit {
 
   loadAll() {
     if (this.destinatie && this.dataPlecarii) {
-      this.service.filter(this.destinatie, this.dataPlecarii)
+      var dataPlecarii = new DatePipe('en-US').transform(this.dataPlecarii, 'dd/MM/yyyy') ?? "";
+      this.service.filter(this.destinatie, dataPlecarii)
         .subscribe(data => {
           this.zone.run(() => {
             this.zboruri = data;
